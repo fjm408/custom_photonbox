@@ -5,8 +5,7 @@ Compared to the existing vmware/photon box, this box adds the following function
 
 Due to each different photon version may have different waiting time, photon.json may need to be tuned for future photon release. 
 The resulting box is tested with Photon TP 1.0 (photon-1.0-13c08b6.iso)
---
 
-Usage: 
+##Usage: 
 packer build photon.json
 vagrant box add custom/photon ./photo-custom-vagrant.box
