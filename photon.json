@@ -28,24 +28,33 @@
         "shutdown_command": "{{user `shutdown_command`}}",
         "http_directory": ".",
         "boot_command": [
-            "<wait>",
-            "<enter>",
-            "<wait10><enter><wait><enter><wait><enter><wait5>",
-            "<down><enter><wait5>",
-            "<enter><wait5>",
-            "{{user `ssh_password`}}<enter><wait>",
-            "{{user `ssh_password`}}<enter>",
-            "<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
-            "<enter>",
-            "<wait10><wait10><wait10><wait10><wait10>",
-            "root<enter><wait>{{user `ssh_password`}}<enter>",
-            "sed -i -e 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config<enter>",
-            "<wait>",
-            "systemctl restart sshd.service<enter>",
-            "<wait5>"
-        ]   
+           "<wait10><wait5>",
+           "<enter>",
+           "<wait10>",
+           "{{user `ssh_password`}}<enter><wait>",
+           "{{user `ssh_password`}}<enter>",
+           "<enter><wait>",
+           "<enter><wait>",
+           "<enter><wait5>",
+           "<down><enter><wait>",
+           "<enter>",
+           "{{user `ssh_password`}}<enter><wait>",
+           "{{user `ssh_password`}}<enter>",
+           "<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
+           "<enter><wait10><wait10>",
+           "root<enter><wait>{{user `ssh_password`}}<enter><wait>",
+           "sed -i -e 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config<enter>",
+           "<wait>",
+           "systemctl restart sshd.service<enter>",
+           "<wait5>"
+        ]
     }],
     "provisioners": [
+    {
+        "type": "file",
+        "source": "scripts/photon-dev.repo",
+        "destination": "/etc/yum.repos.d/photon-dev.repo"
+    },
     {
         "type": "file",
         "source": "scripts/photon-docker.service",
@@ -67,14 +76,11 @@
     },
     {
         "type": "shell",
-        "inline": ["chmod +x /usr/local/bin/docker-compose"]
+        "script": "scripts/docker-provision.sh"
     },
     {
         "type": "shell",
-        "inline": [
-          "mkdir ${HOME}/.ssh",
-          "cat /tmp/id_rsa.pub >> ${HOME}/.ssh/authorized_keys"
-        ]
+        "inline": ["chmod +x /usr/local/bin/docker-compose"]
     }],
     "post-processors": [
     {
