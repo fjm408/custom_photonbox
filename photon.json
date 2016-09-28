@@ -56,27 +56,22 @@
         "destination": "/etc/yum.repos.d/photon-dev.repo"
     },
     {
+        "type": "shell",
+        "script": "scripts/photon-provision.sh"
+    },
+    {
         "type": "file",
         "source": "scripts/photon-docker.service",
         "destination": "/lib/systemd/system/docker.service"
     },
     {
-        "type": "file",
-        "source": "/Users/hos/.ssh/id_rsa.pub",
-        "destination": "/tmp/id_rsa.pub"
+        "type": "shell",
+        "script": "scripts/docker-provision.sh"
     },
     {
         "type": "file",
         "source": "preload-sw/docker-compose-1.8.0",
         "destination": "/usr/local/bin/docker-compose"
-    },
-    {
-        "type": "shell",
-        "script": "scripts/photon-provision.sh"
-    },
-    {
-        "type": "shell",
-        "script": "scripts/docker-provision.sh"
     },
     {
         "type": "shell",

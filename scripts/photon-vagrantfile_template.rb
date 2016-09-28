@@ -4,7 +4,7 @@ Vagrant.configure('2') do |config|
 
     config.vm.synced_folder '.', '/vagrant', disabled: true
     config.nfs.functional = false
-    config.vm.network "forwarded_port", guest: 2375, host: 2375
+    config.vm.network "forwarded_port", guest: 2375, host: 2375, auto_correct:true
 
     config.vm.provider :vmware_fusion do |v|
         v.gui = false
