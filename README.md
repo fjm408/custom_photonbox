@@ -9,10 +9,14 @@ Compared to the existing vmware/photon box, this box adds the following function
 <p>Due to each different photon version may have different waiting time, photon.json may need to be tuned for future photon release. 
 The resulting box is tested with Photon TP 1.0 (photon-1.0-13c08b6.iso)
 </p>
+##Pre-requisite
+<p> This custom box is designed to be used along with Vagrant vmware_destop plugin (tested with vmware_fusion plugin). 
+</p>
+<p>HashiCorp's packer must be installed. The installation instruction can be found at https://www.packer.io/intro/getting-started/setup.html</p>
 ##Usage:
-<p>git clone this project into your computer
-<p>Download photon-1.0 from https://bintray.com/artifact/download/vmware/photon/photon-1.0-13c08b6.iso</p>
-<p>Place the downloaded file in the cloned folder 
-<p>Install HashiCorp packer from https://www.packer.io/intro/getting-started/setup.html</p>
-<p>packer build photon.json</p>
-<p>vagrant box add custom/photon ./photo-custom-vagrant.box</p>
+<ul>
+  <li>Git clone this project into your computer
+  <li>Download photon-1.0 from https://bintray.com/artifact/download/vmware/photon/photon-1.0-13c08b6.iso and place it in the cloned folder 
+  <li>Type "packer build photon.json" in the cloned folder
+  <li>Type "vagrant box add custom/photon ./photo-custom-vagrant.box" to import this box into Vagrant
+</ul>
